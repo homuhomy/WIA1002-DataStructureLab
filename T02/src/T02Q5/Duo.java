@@ -7,8 +7,8 @@ public class Duo <A, B>{
     private B second;
 
     public Duo(A a, B b){
-        first = a;
-        second = b;
+        this.first = a;
+        this.second = b;
     }
 
 }

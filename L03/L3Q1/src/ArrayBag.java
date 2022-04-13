@@ -3,9 +3,18 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class ArrayBag<T> implements BagInterface<T> {
-    private int DEFAULT_CAPACITY = 25;
-    private T[] bag = (T[]) new Object[DEFAULT_CAPACITY];
+    private static final int DEFAULT_CAPACITY = 25;
+    private T[] bag;
     private int numberOfEntries;
+
+    public ArrayBag(){
+        this(DEFAULT_CAPACITY);
+    }
+
+    @SuppressWarnings("unchecked")
+    public ArrayBag(int capacity){
+        bag = (T[]) new Object[capacity];
+    }
 
     @Override
     public int getCurrentSize() {
@@ -14,7 +23,7 @@ public class ArrayBag<T> implements BagInterface<T> {
 
     @Override
     public boolean isFull() {
-        return numberOfEntries == 25;
+        return numberOfEntries == bag.length;
     }
 
     @Override
@@ -24,30 +33,37 @@ public class ArrayBag<T> implements BagInterface<T> {
 
     @Override
     public boolean add(T newEntry) {
-        if (numberOfEntries < DEFAULT_CAPACITY) {
-            numberOfEntries++;
-            bag[numberOfEntries - 1] = newEntry;
+        if (isFull()) {
+            return false;
+        }else{
+            bag[numberOfEntries++] = newEntry;
             return true;
         }
-        return false;
     }
 
     @Override
     public T remove() {
-        if (numberOfEntries != 0) {
-            Random r = new Random();
-            int selectedIndex = r.nextInt(numberOfEntries);
-            T result = bag[selectedIndex];
-            bag[selectedIndex] = null;
+        T result = removeEntry(numberOfEntries - 1);
+        return result;
+    }
 
-            for (int i = selectedIndex; i < numberOfEntries; i++) {
-                bag[i] = bag[i + 1];
-            }
+    /**
+     * Removes and returns the entry at a given index within the array
+     * @param givenIndex the index of the entry to be removed
+     * @return the entry if the removal was successful, or null if not
+     */
+    private T removeEntry(int givenIndex){
+        T result = null;
 
+        if(!isEmpty() && (givenIndex >= 0)){
+            result = bag[givenIndex]; //eentry to removee
             numberOfEntries--;
-            return result;
+
+            //replace entry to remove with last entry
+            bag[givenIndex] = bag[numberOfEntries];
+            bag[numberOfEntries] = null; //remove reference to last entry
         }
-        return null;
+        return result;
     }
 
     @Override
@@ -98,8 +114,13 @@ public class ArrayBag<T> implements BagInterface<T> {
 
     @Override
     public T[] toArray() {
+        @SuppressWarnings("unchecked")
         T[] resultArr = (T[]) new Object[numberOfEntries];
-        System.arraycopy(bag, 0, resultArr, 0, numberOfEntries);
+        //System.arraycopy(bag, 0, resultArr, 0, numberOfEntries);
+
+        for(int index = 0; index < numberOfEntries; index++){
+            resultArr[index] = bag[index];
+        }
         return resultArr;
     }
 

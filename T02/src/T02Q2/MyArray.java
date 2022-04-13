@@ -13,6 +13,7 @@ public class MyArray {
     }
 
     //generic method listAll that displays the list of arrays
+    //static -> can call a static method without creating an object of the class
     public static <E> void listAll(E[] list){
         for(int i =0; i<list.length; i++){
             System.out.println(list[i] + " ");

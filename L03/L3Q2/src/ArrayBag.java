@@ -98,17 +98,26 @@ public class ArrayBag<T> implements BagInterface<T> {
 
     @Override
     public T[] toArray() {
+        @SuppressWarnings("unchecked")
         T[] resultArr = (T[]) new Object[numberOfEntries];
-        System.arraycopy(bag, 0, resultArr, 0, numberOfEntries);
+
+        for(int index = 0; index < numberOfEntries; index++){
+            resultArr[index] = bag[index];
+        }
         return resultArr;
     }
 
     @Override
     public BagInterface<T> union(BagInterface<T> anotherBag) {
+
         BagInterface<T> newBag = new ArrayBag();
+
+        //add entries from this bag to the new bag
         for (int i = 0; i < this.toArray().length; i++) {
             newBag.add((T) Array.get(this.toArray(), i));
         }
+
+        //add entries from second bag to new bag
         for (int i = 0; i < anotherBag.toArray().length; i++) {
             newBag.add((T) Array.get(anotherBag.toArray(), i));
         }
@@ -125,8 +134,10 @@ public class ArrayBag<T> implements BagInterface<T> {
         bag2.add("b");
         bag2.add("d");
         bag2.add("e");
+
         BagInterface<String> everything = bag1.union(bag2);
 
+        System.out.println(everything);
         Object[] src = everything.toArray();
         String[] dest = new String[src.length];
         System.arraycopy(src, 0, dest, 0, src.length);

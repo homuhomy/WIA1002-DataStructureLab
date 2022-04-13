@@ -38,6 +38,7 @@ public interface BagInterface <T>{
      @param anEntry the entry to locate
      @return true if this bag contains anEntry, or false otherwise */
     public boolean contains(T anEntry);
+
     /** Retrieves all entries that are in this bag.
      * @return a newly allocated array of all the entries in the bag */
     public T[]toArray();

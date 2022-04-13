@@ -99,8 +99,12 @@ public class ArrayBag<T> implements BagInterface<T> {
 
     @Override
     public T[] toArray() {
+        @SuppressWarnings("unchecked")
         T[] resultArr = (T[]) new Object[numberOfEntries];
-        System.arraycopy(bag, 0, resultArr, 0, numberOfEntries);
+
+        for(int index = 0; index < numberOfEntries; index++){
+            resultArr[index] = bag[index];
+        }
         return resultArr;
     }
 
@@ -126,7 +130,7 @@ public class ArrayBag<T> implements BagInterface<T> {
         // assign smaller bag to bag1, bigger bag to bag2
         if (this.getCurrentSize() <= anotherBag.getCurrentSize()) {
             bag1 = this;
-            bag2 = anotherBag;
+            bag2 = anotherBag; //whicever bag that has more in it will be bag2
         } else {
             bag1 = anotherBag;
             bag2 = this;

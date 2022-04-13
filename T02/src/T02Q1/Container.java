@@ -14,9 +14,6 @@ public class Container <T>{
         return t;
     }
 
-}
-
-class Main{
     public static void main(String[] args) {
         Container<Integer> integerContainer = new Container<>();
         Container<String> stringContainer = new Container<>();
@@ -28,3 +25,4 @@ class Main{
         System.out.println("String value: " + stringContainer.retrieve());
     }
 }
+
