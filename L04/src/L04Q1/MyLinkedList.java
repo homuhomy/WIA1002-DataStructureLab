@@ -1,14 +1,12 @@
 package L04Q1;
 
 public class MyLinkedList<E> {
-    private Node<E> head, tail;
+    private Node<E> head = null;
+    private Node<E> tail = null;
     private int size = 0;
 
     public MyLinkedList() {
     }
-
-    ;
-
 
     public void addFirst(E e) {
         Node<E> newNode = new Node<>(e);
@@ -29,15 +27,13 @@ public class MyLinkedList<E> {
         size++; //increase list size
     }
 
-    /**
-     * Return nothing, but adds an element to the list
-     *
-     * @param index
-     * @param e
-     */
+
     public void add(int index, E e) {
-        if (index == 0) addFirst(e);
-        else if (index == size - 1) addLast(e);
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
+        else if (index == 0) addFirst(e);
+        else if (index == size) addLast(e);
         else {
             Node<E> current = head; //set head to be a current node
             //if index = 0; i < index - 1
@@ -52,7 +48,9 @@ public class MyLinkedList<E> {
     }
 
     public E removeFirst() {
-        if (size == 0) return null; //no node exist
+        if (size == 0){
+            return null; //no node exist
+        }
         else {
             Node<E> temp = head; //copy head to temp node before delete
             head = head.next; //set new head
@@ -84,9 +82,15 @@ public class MyLinkedList<E> {
     }
 
     public E remove(int index) {
-        if (index < 0 || index >= size) return null; //delete index of node in range
-        else if (index == 0) return removeFirst();
-        else if (index == size - 1) return removeLast();
+        if (index < 0 || index >= size) {
+            return null; //delete index of node in range
+        }
+        else if (index == 0) {
+            return removeFirst();
+        }
+        else if (index == size - 1) {
+            return removeLast();
+        }
         else {
             Node<E> previous = head; //set head to previous
             for (int i = 1; i < index; i++) { //stop before the node we want to remove
@@ -111,7 +115,7 @@ public class MyLinkedList<E> {
             addLast(e);
         }
     }
-    
+
     /**
      * Return true if list contains the element e
      *
@@ -136,7 +140,7 @@ public class MyLinkedList<E> {
      */
     public E get(int index){
         Node<E> current = head; //set as starting point at head
-        
+
         for(int i =0; i<index; i++){
             current = current.next;
         }
@@ -178,8 +182,10 @@ public class MyLinkedList<E> {
         return -1;
     }
 
-    //recheck this one
 
+
+
+    //2 3 3 4 5 6 6 3
     /**
      *
      * @param e
@@ -199,6 +205,7 @@ public class MyLinkedList<E> {
         return lastIndex;
     }
 
+
     /**
      * Replace the element at the specified position in this list with the specified element
      * @param index
@@ -206,29 +213,67 @@ public class MyLinkedList<E> {
      * @return specified element
      */
     public E set(int index, E e){
+        if(index == size){ //meaning out of bound
+            addLast(e);
+            return remove(index + 1);
+        }
         add(index, e);
         return remove(index + 1);
     }
+
+//    public E set(int index, E e){
+//        if(index < 0 || index > size - 1){
+//            return null;
+//        }
+//
+//        if(index == size){
+//            addLast(e);
+//        }
+//
+//        Node<E> current = head;
+//        for(int i = 0; i < index; i++){
+//            current = current.next;
+//        }
+//
+//        E temp = current.element; //save the value of current to temp so that it can be return later
+//        current.element = e; //assign new element to the current element
+//        return temp; //return replaced element
+//    }
 
     //clear the list
     public void clear(){
         while(size!=0){
             removeFirst();
         }
+
+        //or
+        //size = 0;
+        // head = tail = null;
     }
 
     //Print all the elements in the list
     public void print(){
         Node<E> current = head; //as starting point
         for(int i = 0; i < size; i++){
-            System.out.println(current.element);
+            System.out.println(current.element + " ");
             current = current.next;
         }
     }
 
     //Print all elements in reverse order
     public void reverse(){
-        Node<E> current = tail; //as starting point
+        String s = " ";
+        for(Node<E> current = head; current != null; current = current.next)
+            s = current.element + " " + s;
+        System.out.println(s);
+    }
+
+    public int getSize(){
+        return size;
+    }
+
+    public E getMiddleValue(){
+        return get((size - 1) / 2);
     }
 
 }
