@@ -16,6 +16,10 @@
       <module fileurl="file://$PROJECT_DIR$/L02/L02Q6/L02Q6.iml" filepath="$PROJECT_DIR$/L02/L02Q6/L02Q6.iml" />
       <module fileurl="file://$PROJECT_DIR$/L03/L03.iml" filepath="$PROJECT_DIR$/L03/L03.iml" />
       <module fileurl="file://$PROJECT_DIR$/L04/L04.iml" filepath="$PROJECT_DIR$/L04/L04.iml" />
+      <module fileurl="file://$PROJECT_DIR$/L05/L05.iml" filepath="$PROJECT_DIR$/L05/L05.iml" />
+      <module fileurl="file://$PROJECT_DIR$/L05/L05Q1/L05Q1.iml" filepath="$PROJECT_DIR$/L05/L05Q1/L05Q1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/L05/L05Q2/L05Q2.iml" filepath="$PROJECT_DIR$/L05/L05Q2/L05Q2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/L05/L05Q3/L05Q3.iml" filepath="$PROJECT_DIR$/L05/L05Q3/L05Q3.iml" />
       <module fileurl="file://$PROJECT_DIR$/L03/L3Q1/L3Q01.iml" filepath="$PROJECT_DIR$/L03/L3Q1/L3Q01.iml" />
       <module fileurl="file://$PROJECT_DIR$/L03/L3Q2/L3Q2.iml" filepath="$PROJECT_DIR$/L03/L3Q2/L3Q2.iml" />
       <module fileurl="file://$PROJECT_DIR$/L03/L3Q3/L3Q3.iml" filepath="$PROJECT_DIR$/L03/L3Q3/L3Q3.iml" />
@@ -31,6 +35,7 @@
       <module fileurl="file://$PROJECT_DIR$/T02/T02.iml" filepath="$PROJECT_DIR$/T02/T02.iml" />
       <module fileurl="file://$PROJECT_DIR$/T03/T03.iml" filepath="$PROJECT_DIR$/T03/T03.iml" />
       <module fileurl="file://$PROJECT_DIR$/T04/T04.iml" filepath="$PROJECT_DIR$/T04/T04.iml" />
+      <module fileurl="file://$PROJECT_DIR$/T05/T05.iml" filepath="$PROJECT_DIR$/T05/T05.iml" />
     </modules>
   </component>
 </project>
