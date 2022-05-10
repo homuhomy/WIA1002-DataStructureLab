@@ -9,6 +9,8 @@ public class SNode <E>{
 //        this.next = next;
 //    }
 
+    public SNode(){}
+
     public SNode(E element){
         this.element = element;
         this.next = null;

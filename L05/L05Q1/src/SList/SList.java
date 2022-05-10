@@ -13,10 +13,10 @@ public class SList <E>{
             head = tail = new SNode<E>(e); //point head and tail to new node
         }
         else{
-            tail.next = new SNode<>(e); //point the current last node next node to the new node
-            tail = tail.next; //point tail to the new node
+            tail.next = new SNode<>(e); //refer the current last node next node to the new node
+            tail = tail.next; //refer tail to the new node
         }
-        size++;
+        size++; //increase size of linked list by 1
         System.out.println("Added: " + e);
     }
 
@@ -26,8 +26,8 @@ public class SList <E>{
             throw new NoSuchElementException();
         }
         else{
-            SNode<E> temp = head;
-            head = head.next; //point head to the next node so now nothing can refer to the deleted node
+            SNode<E> temp = head; //create a new node temp and we refer to head as the starting point
+            head = head.next; //refer head to the next node so now nothing can refer to the deleted node
             if(head == null){ //size == 0
                 tail = null;
             }
@@ -43,7 +43,7 @@ public class SList <E>{
         //search through the list
         for(int i = 0; i < size; i++){
             if(e.equals(temp.element)){
-                return true;
+                return true; //meaning we found the element that we are looking for
             }
             temp = temp.next;
         }
@@ -54,6 +54,7 @@ public class SList <E>{
     public void clear(){
         size = 0;
         tail = head = null;
+        System.out.println("The list is empty.");
     }
 
     //Display all values from the list in a successive order.

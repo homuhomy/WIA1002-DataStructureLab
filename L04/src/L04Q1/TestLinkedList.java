@@ -12,6 +12,8 @@ public class TestLinkedList {
         list.add('d');
         list.add('e');
 
+        list.xyz(2,'g');
+
 
         //b.print all elements in the list
         list.print();

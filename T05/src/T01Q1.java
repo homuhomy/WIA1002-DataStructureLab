@@ -10,90 +10,30 @@ public class T01Q1 <E>{
 //    }
 
     //q1
-    //method should be called add
-//    public E xyz(int index, E e){
-//        Node<E> current = head;
-//        Node<E> temp;
-//
-//        if(index < 0) //indexOutOfBound
-//            return null;
-//        else if(index == size -1){ //if new node is to be added as the last node
-//            this.addLast(e);
-//            return null;
-//        }
-//        //addFirst
-//        else if(index == 0){ //want to add new node at the first element
-//            temp = head; //point head to temp (new node)
-//            head.element = e; //head element now has the value of e
-//            return temp.element; //return the temp element
-//        }
-//        else{
-//            //stop for loop right before it reach the index
-//            for(int i = 1; i < index; i++){ //iterate through the list i=1?
-//                current = current.next; //going forward
-//            }
-//            //temp = our new node //current = node located in previous index
-//            temp = current.next;
-//            current.next.element = e; //what if we just do temp.element = e?
-//            return temp.element;
-//        }
-//    }
-
-    //q1 c
-    //make a method called addFirst(E element)
-    public void addFirst(E element){
-        Node<E> temp = new Node<>(element, head, null);
-        if(head!=null)
-            head.prev = temp;
-        head = temp;
-        if(tail == null)
-            tail = temp;
-        size++;
-    }
-
-    //new add method
-    public void add(int index, E e){
-        if(index < 0 || index > size) //update the condition
-            throw new IndexOutOfBoundsException();
-        if(index == size)
-            addLast(e);
-        if(index == 0)
-            addFirst(e);
-    }
-
-    //new
-    public E xyz(int index, E e){
+    //method is to replace element at specific index
+    public E replace(int index, E e){
         Node<E> current = head;
-        Node<E> temp;
+        E element;
+        if(index < 0)
+            return null;
 
-        if(index < 0 || index > size){ //not possible index
-            throw new IndexOutOfBoundsException();
-        }
-        else if(index == size -1){ //if new node is to be added as the last node
+        else if(index < 0 || index >= size) { //better to throw indexOutOfBound
             this.addLast(e);
             return null;
         }
-        //addFirst
-        else if(index == 0){ //want to add new node at the first element
-            temp = head; //point head to temp (new node)
-            head.element = e; //head element now has the value of e
-            return temp.element; //return the temp element
-        }
+
         else{
             //stop for loop right before it reach the index
-            for(int i = 0; i < index; i++){ //iterate through the list i=1?
-                current = current.next; //going forward
+            for(int i = 0; i < index; i++){ //iterate through the list
+                current = current.next; //referring to the node we want to replace, if i=1 then referring to the previous index
             }
-            //temp = our new node //current = node located in previous index
-            temp = new Node<>(e,current,current.prev);
-            temp = current.next;
-            current.next.element=e; //what if we just do temp.element = e?
-
-            size++; //increase size
-            return temp.element;
-
+            element = current.element;
+            current.element = e;
+            return element; //this return our original element
         }
     }
+
+
 
     public void addLast(E element){
         Node<E> temp = new Node<>(element, null, tail); //create obj temp and set pointer to tail

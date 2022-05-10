@@ -81,7 +81,9 @@ public class DoublyLinkedList<E> {
             for(int i = 0; i < index; i++){ //iterate and stop before the index chosen
                 temp = temp.next; //go forward
             }
-            //imagine dia swap places dgn previous node
+            //dia kan push the prev node
+            //imagine dia swap places dgn previous node (which is currently temp)
+            //public Node(E element, Node next, Node previous)
             Node<E> insert = new Node(element, temp, temp.prev);
             //for now, temp.prev.next is pointing to temp, so now we want it to point to newNode
             temp.prev.next = insert;
@@ -98,7 +100,10 @@ public class DoublyLinkedList<E> {
         }
         Node<E> temp = head;
         head = head.next;
-        head.prev = null;
+        //if the new head is not null, new head's previous becomes null
+        if (head != null) {
+            head.prev = null;
+        }
         size--;
 
         System.out.println("Deleted: " + temp.element);
@@ -111,7 +116,10 @@ public class DoublyLinkedList<E> {
         }
         Node<E> temp = tail;
         tail = tail.prev; //point tail to the previous node
-        tail.next = null; //now the node we want to remove will be null
+        //if the new tail is not null, new tail's next becomes null
+        if (tail != null) {
+            tail.next = null; //now the node we want to remove will be null
+        }
         size--;
 
         System.out.println("Deleted: " + temp.element);
@@ -131,16 +139,17 @@ public class DoublyLinkedList<E> {
         }
         else{
             Node<E> temp = head; //as starting point
-            for(int i = 0; i < index; i++){ //in this case it will stop at the node wanna remove
+            for(int i = 0; i < index; i++){ //in this case it will stop at the node we wanna remove
                 temp = temp.next; //going forward
             }
-            element = temp.element; //temporarily store element we want to return
+            element = temp.element; //temporarily store element we will remove to return
 
             //prev referring to the prev variable of the next node after index 2, namely the node at index 3
             temp.next.prev = temp.prev;
 
             //next here is referring to the next variable of the prev node before index 2, namely, the node at index 1
             temp.prev.next = temp.next;
+
             temp.prev = temp.next = null;
             size--;
             System.out.println("Deleted: " + temp.element);
@@ -158,39 +167,6 @@ public class DoublyLinkedList<E> {
         temp = null;
         tail.prev = tail.next = null;
         size = 0;
-    }
-
-    public E xyz(int index, E e){
-        Node<E> current = head;
-        Node<E> temp;
-
-        if(index < 0 || index > size){ //not possible index
-            throw new IndexOutOfBoundsException();
-        }
-        else if(index == size -1){ //if new node is to be added as the last node
-            this.addLast(e);
-            return null;
-        }
-        //addFirst
-        else if(index == 0){ //want to add new node at the first element
-            temp = head; //point head to temp (new node)
-            head.element = e; //head element now has the value of e
-            return temp.element; //return the temp element
-        }
-        else{
-            //stop for loop right before it reach the index
-            for(int i = 0; i < index; i++){ //iterate through the list i=1?
-                current = current.next; //going forward
-            }
-            //temp = our new node //current = node located in previous index
-            temp = new Node<>(e,current,current.prev);
-            temp = current.next;
-            current.next.element=e; //what if we just do temp.element = e?
-
-            size++; //increase size
-            return temp.element;
-
-        }
     }
 
 
